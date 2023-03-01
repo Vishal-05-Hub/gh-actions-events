@@ -3,7 +3,19 @@ on:
   pull_request:
     types:
       - opened
+    branches:
+      - main
   workflow_dispatch:
+  push:
+    branches:
+      - main  # main
+      - 'dev-*'  # dev-new dev-this-is-new  * means only - can come not /
+      - 'feat/**' # feat/new feat/new/button  ** means as many / can came
+      # devloper-1 will be any of the above type
+    path-ignore: # It means that it will not run the workflow then the file from the
+                 # given path is updated and if we want to update only when this file
+                 # path is updated then we can use it in path section.
+      - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
