@@ -17,7 +17,7 @@ on:
       
       # given path is updated and if we want to update only when this file
       # path is updated then we can use it in path section.
-    path-ignore: 
+    paths-ignore: 
        - '.github/workflows/*'
 jobs:
   deploy:
