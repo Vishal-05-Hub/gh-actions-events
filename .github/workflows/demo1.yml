@@ -13,6 +13,7 @@ on:
       - 'dev-*'  # dev-new dev-this-is-new  * means only - can come not /
       - 'feat/**' # feat/new feat/new/button  ** means as many / can came
       # devloper-1 will be any of the above type
+      
       # It means that it will not run the workflow then the file from the
       
       # given path is updated and if we want to update only when this file
