@@ -10,7 +10,7 @@ on:
   push:
     branches:
       - main  # main
-      - 'dev-*'  # dev-new dev-this-is-new  * means only - can come not /
+      - 'dev*'  # dev-new dev-this-is-new  * means only - can come not /
       - 'feat/**' # feat/new feat/new/button  ** means as many / can came
       # devloper-1 will be any of the above type
       
