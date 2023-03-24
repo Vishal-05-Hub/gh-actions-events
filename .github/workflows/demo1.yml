@@ -25,16 +25,36 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Set Git config
-        run: |
-          git config --global http.sslBackend gnutls
-      - name: Clone Azure DevOps repository
-        run: |
-          git clone https://dev.azure.com/vishalchaudhary0011/First%20Project/_git/Testing-Repo-GitHub-Actions
-          cd Testing-Repo-GitHub-Actions
-          git checkout main
-        env:
-          AZURE_DEVOPS_EXT_PAT: ${{ secrets.AZURE_DEVOPS_TOKEN }}
+      - name: Checkout code from Azure DevOps
+        uses: actions/checkout@v3
+        with:
+          repository: https://dev.azure.com/vishalchaudhary0011/First%20Project/_git/Testing-Repo-GitHub-Actions
+          ref: main
+          ssh-key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
+          ssh-known-hosts: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+#         with:
+#           fetch-depth: 0
+#           submodules: 'recursive'
+
+#       - name: Set up Azure DevOps PAT
+#         run: echo "AZURE_DEVOPS_EXT_PAT=${{ secrets.AZURE_DEVOPS_PAT }}" >> $GITHUB_ENV
+
+#       - name: Push changes to Azure DevOps
+#         run: |
+#           git remote add azure https://dev.azure.com/vishalchaudhary0011/First%20Project/_git/Testing-Repo-GitHub-Actions
+#           git push azure HEAD:refs/heads/master
+#       - name: Set Git config
+#         run: |
+#           git config --global http.sslBackend gnutls
+#       - name: Clone Azure DevOps repository
+#         run: |
+#           git clone https://dev.azure.com/vishalchaudhary0011/First%20Project/_git/Testing-Repo-GitHub-Actions
+#           cd Testing-Repo-GitHub-Actions
+#           git checkout main
+#         env:
+#           AZURE_DEVOPS_EXT_PAT: ${{ secrets.AZURE_DEVOPS_TOKEN }}
       - name: Install dependencies
         run: npm ci
       - name: Test code
