@@ -32,13 +32,14 @@ jobs:
           known-hosts-data: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
         env:
           REPO_URL: "git@ssh.dev.azure.com:v3/vishalchaudhary0011/First%20Project/Testing-Repo-GitHub-Actions"
+      - name: Fetch and checkout code
         run: |
           mkdir my-project
           cd my-project
           git init
           git remote add origin $REPO_URL
-          git fetch --depth=1 origin $GITHUB_REF
-          git checkout $GITHUB_REF
+          git fetch --depth=1 origin ${{ github.ref }}
+          git checkout ${{ github.ref }}
 
 #         - name: Checkout code
 #           uses: actions/checkout@v3
