@@ -37,6 +37,7 @@ jobs:
             git clone git@ssh.dev.azure.com:v3/vishalchaudhary0011/First%20Project/Testing-Repo-GitHub-Actions
             cd Testing-Repo-GitHub-Actions
             git checkout main
+            ls
 
 #         - name: Checkout code
 #           uses: actions/checkout@v3
