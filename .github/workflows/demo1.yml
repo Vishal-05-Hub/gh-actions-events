@@ -8,27 +8,30 @@ on:
       - main
       - dev
   workflow_dispatch:
-  push:
-    branches:
-      - main  # main
-      - 'dev*'  # dev-new dev-this-is-new  * means only - can come not /
-      - 'feat/**' # feat/new feat/new/button  ** means as many / can came
-      # devloper-1 will be any of the above type
+#   push:
+#     branches:
+#       - main  # main
+#       - 'dev*'  # dev-new dev-this-is-new  * means only - can come not /
+#       - 'feat/**' # feat/new feat/new/button  ** means as many / can came
+#       # devloper-1 will be any of the above type
       
-      # It means that it will not run the workflow then the file from the
+#       # It means that it will not run the workflow then the file from the
       
-      # given path is updated and if we want to update only when this file
-      # path is updated then we can use it in path section.
-    paths-ignore: 
-       - '.github/workflows/*'
+#       # given path is updated and if we want to update only when this file
+#       # path is updated then we can use it in path section.
+#    paths-ignore: 
+#        - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Output event data
-        run: echo '${{ toJSON(github.event) }}'
-      - name: Get code
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ vars.REPO_URL }}
+          ref: main
+          token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
+          fetch-depth: 0
       - name: Install dependencies
         run: npm ci
       - name: Test code
