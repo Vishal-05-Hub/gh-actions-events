@@ -25,15 +25,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          repository: vishalchaudhary0011/First%20Project/_git/Testing-Repo-GitHub-Actions
-          ref: refs/heads/main
-          token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
-          fetch-depth: 0
-          persist-credentials: false
-          clean: false
+      - name: Clone Azure DevOps repository
+        run: |
+          git clone https://vishalchaudhary0011@dev.azure.com/vishalchaudhary0011/First%20Project/_git/Testing-Repo-GitHub-Actions
+          cd Testing-Repo-GitHub-Actions
+          git checkout main
+        env:
+          AZURE_DEVOPS_EXT_PAT: ${{ secrets.AZURE_DEVOPS_TOKEN }}
       - name: Install dependencies
         run: npm ci
       - name: Test code
