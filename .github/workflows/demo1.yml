@@ -25,6 +25,29 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+        - name: Checkout code from Azure DevOps
+          uses: webfactory/ssh-agent@v0.5.0
+          with:
+            ssh-private-key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
+            known-hosts-data: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
+          env:
+            REPO_URL: "git@ssh.dev.azure.com:v3/vishalchaudhary0011/First%20Project/Testing-Repo-GitHub-Actions"
+          run: |
+            mkdir my-project
+            cd my-project
+            git init
+            git remote add origin $REPO_URL
+            git fetch --depth=1 origin $GITHUB_REF
+            git checkout $GITHUB_REF
+
+#         - name: Checkout code
+#           uses: actions/checkout@v3
+#           with:
+#             submodules: 'recursive'
+#             ssh-key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
+#             fetch-depth: 0
+#           env:
+#             KNOWN_HOSTS_CONTENT: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
 #       - name: Checkout code from Azure DevOps
 #         uses: actions/checkout@v3
 #         with:
@@ -48,15 +71,15 @@ jobs:
 #       - name: Set Git config
 #         run: |
 #           git config --global http.sslBackend gnutls
-      - name: Clone Azure DevOps repository
-        run: |
-          git clone git@ssh.dev.azure.com:v3/vishalchaudhary0011/First%20Project/Testing-Repo-GitHub-Actions
-          cd Testing-Repo-GitHub-Actions
-          git checkout main
-        env:
-          AZURE_DEVOPS_EXT_PAT: ${{ secrets.AZURE_DEVOPS_TOKEN }}
-          ssh-key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
-          ssh-known-hosts: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
+#       - name: Clone Azure DevOps repository
+#         run: |
+#           git clone git@ssh.dev.azure.com:v3/vishalchaudhary0011/First%20Project/Testing-Repo-GitHub-Actions
+#           cd Testing-Repo-GitHub-Actions
+#           git checkout main
+#         env:
+#           AZURE_DEVOPS_EXT_PAT: ${{ secrets.AZURE_DEVOPS_TOKEN }}
+#           ssh-key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
+#           ssh-known-hosts: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
       - name: Install dependencies
         run: npm ci
       - name: Test code
