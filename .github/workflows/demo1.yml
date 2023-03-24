@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: Clone Azure DevOps repository
         run: |
-          git clone https://vishalchaudhary0011@dev.azure.com/vishalchaudhary0011/First%20Project/_git/Testing-Repo-GitHub-Actions
+          git clone https://dev.azure.com/vishalchaudhary0011/First%20Project/_git/Testing-Repo-GitHub-Actions
           cd Testing-Repo-GitHub-Actions
           git checkout main
         env:
