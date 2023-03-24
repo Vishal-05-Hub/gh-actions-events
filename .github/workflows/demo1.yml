@@ -28,7 +28,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          repository: ${{ vars.REPO_URL }}
+          repository: 'https://vishalchaudhary0011@dev.azure.com/vishalchaudhary0011/First%20Project/_git/Testing-Repo-GitHub-Actions'
           ref: 'refs/heads/main'
           token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
           fetch-depth: 0
