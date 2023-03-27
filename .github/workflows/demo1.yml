@@ -36,8 +36,9 @@ jobs:
         run: |
             git clone git@ssh.dev.azure.com:v3/vishalchaudhary0011/First%20Project/Testing-Repo-GitHub-Actions
             cd Testing-Repo-GitHub-Actions
-            cp -r /home/runner/work/gh-actions-events/gh-actions-events/Testing-Repo-GitHub-Actions/* /home/runner/work/gh-actions-events/gh-actions-events/
-            rm -rf /home/runner/work/gh-actions-events/gh-actions-events/Testing-Repo-GitHub-Actions
+            
+#            cp -r /home/runner/work/gh-actions-events/gh-actions-events/Testing-Repo-GitHub-Actions/* /home/runner/work/gh-actions-events/gh-actions-events/
+#            rm -rf /home/runner/work/gh-actions-events/gh-actions-events/Testing-Repo-GitHub-Actions
 #         - name: Checkout code
 #           uses: actions/checkout@v3
 #           with:
@@ -79,10 +80,18 @@ jobs:
 #           ssh-key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
 #           ssh-known-hosts: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
       - name: Install dependencies
-        run: npm ci
+        run: |
+          cd Testing-Repo-GitHub-Actions
+          npm ci
       - name: Test code
-        run: npm run test
+        run: |
+          cd Testing-Repo-GitHub-Actions
+          npm run test
       - name: Build code
-        run: npm run build
+        run: |
+          cd Testing-Repo-GitHub-Actions
+          npm run build
       - name: Deploy project
-        run: echo "Deploying..."
+        run: |
+          cd Testing-Repo-GitHub-Actions
+          echo "Deploying..."
