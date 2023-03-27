@@ -30,6 +30,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
           known-hosts-data: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
+          persist-credentials: false
         env:
           REPO_URL: "git@ssh.dev.azure.com:v3/vishalchaudhary0011/First%20Project/Testing-Repo-GitHub-Actions"
       - name: Fetch and checkout code
