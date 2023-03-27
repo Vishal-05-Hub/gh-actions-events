@@ -8,9 +8,6 @@ on:
       - main
       - dev
   workflow_dispatch:
-defaults:
-  run:
-    working-directory: /home/runner/work/gh-actions-events/gh-actions-events/Testing-Repo-GitHub-Actions
 #   push:
 #     branches:
 #       - main  # main
