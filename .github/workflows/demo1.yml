@@ -36,9 +36,7 @@ jobs:
         run: |
             git clone git@ssh.dev.azure.com:v3/vishalchaudhary0011/First%20Project/Testing-Repo-GitHub-Actions
             cd Testing-Repo-GitHub-Actions
-            git checkout main
-            ls
-            pwd
+            cp -r /home/runner/work/gh-actions-events/gh-actions-events/Testing-Repo-GitHub-Actions/* /home/runner/work/gh-actions-events/gh-actions-events/
 
 #         - name: Checkout code
 #           uses: actions/checkout@v3
@@ -81,9 +79,7 @@ jobs:
 #           ssh-key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
 #           ssh-known-hosts: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
       - name: Install dependencies
-        run: |
-            cd Testing-Repo-GitHub-Actions/
-            npm ci
+        run: npm ci
       - name: Test code
         run: npm run test
       - name: Build code
