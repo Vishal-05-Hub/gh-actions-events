@@ -80,7 +80,9 @@ jobs:
 #           ssh-key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
 #           ssh-known-hosts: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
       - name: Install dependencies
-        run: npm ci
+        run: |
+            npm install
+            npm ci
       - name: Test code
         run: npm run test
       - name: Build code
