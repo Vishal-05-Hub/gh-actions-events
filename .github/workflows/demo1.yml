@@ -8,6 +8,9 @@ on:
       - main
       - dev
   workflow_dispatch:
+defaults:
+  run:
+    working-directory: /home/runner/work/gh-actions-events/gh-actions-events/Testing-Repo-GitHub-Actions
 #   push:
 #     branches:
 #       - main  # main
@@ -81,17 +84,13 @@ jobs:
 #           ssh-known-hosts: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
       - name: Install dependencies
         run: |
-          cd Testing-Repo-GitHub-Actions
           npm ci
       - name: Test code
         run: |
-          cd Testing-Repo-GitHub-Actions
           npm run test
       - name: Build code
         run: |
-          cd Testing-Repo-GitHub-Actions
           npm run build
       - name: Deploy project
         run: |
-          cd Testing-Repo-GitHub-Actions
           echo "Deploying..."
