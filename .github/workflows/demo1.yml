@@ -82,15 +82,10 @@ jobs:
 #           AZURE_DEVOPS_EXT_PAT: ${{ secrets.AZURE_DEVOPS_TOKEN }}
 #           ssh-key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
 #           ssh-known-hosts: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
-      - name: Install dependencies
+      - name: Install dependencies & Test code & Build code & Deploy project
         run: |
+          cd Testing-Repo-GitHub-Actions
           npm ci
-      - name: Test code
-        run: |
           npm run test
-      - name: Build code
-        run: |
           npm run build
-      - name: Deploy project
-        run: |
           echo "Deploying..."
