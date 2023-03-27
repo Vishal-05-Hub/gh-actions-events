@@ -33,7 +33,6 @@ jobs:
       - name: Fetch and checkout code
         run: |
             git clone git@ssh.dev.azure.com:v3/vishalchaudhary0011/First%20Project/Testing-Repo-GitHub-Actions
-            cd Testing-Repo-GitHub-Actions
             
 #            cp -r /home/runner/work/gh-actions-events/gh-actions-events/Testing-Repo-GitHub-Actions/* /home/runner/work/gh-actions-events/gh-actions-events/
 #            rm -rf /home/runner/work/gh-actions-events/gh-actions-events/Testing-Repo-GitHub-Actions
