@@ -82,7 +82,7 @@ jobs:
 #           ssh-known-hosts: ${{ secrets.AZURE_SSH_KNOWN_HOSTS }}
       - name: Install dependencies
         run: |
-            npm install
+            cd Testing-Repo-GitHub-Actions/
             npm ci
       - name: Test code
         run: npm run test
